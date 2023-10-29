@@ -1,0 +1,22 @@
+{
+    "folders": [
+        {
+            "path": "."
+        },
+        {
+            "path": "../input/"
+        },
+        {
+            "path": "../../input/2022"
+        },
+    ],
+    "settings": { },
+    "extensions": {
+        "recommendations": [
+            "rust-lang.rust-analyzer",
+            "tamasfe.even-better-toml",
+            "serayuzgur.crates",
+            "vadimcn.vscode-lldb"
+        ]
+    }
+}
