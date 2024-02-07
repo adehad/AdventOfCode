@@ -92,6 +92,9 @@ fn main() {
     // We could read the file as a string OR include which is a compile time check!
     // let input = std::fs::read_to_string(LOCAL_INPUT_FILE).unwrap();
     let input = include_str!("../../../../input/2022/d1.txt");
+    if input.contains("\r") {
+        panic!("Input file should have LF endings.")
+    }
     // let input = TEST_STR;
     comprehension_style(&input)
 }
