@@ -39,7 +39,7 @@ fn elf_with_max_calories(
     elves: Vec<Elf>,
     // How many elves to report
     top_x: u32,
-) {
+) -> u32 {
     let mut sorted_elves: Vec<Elf> = elves.to_vec();
     sorted_elves.sort_by_key(|k| k.total_calories());
     let top_elves = &sorted_elves[sorted_elves.len() - top_x as usize..];
@@ -59,10 +59,11 @@ fn elf_with_max_calories(
         );
         total_calories += elf.total_calories();
     }
-    println!("Total calories: {total_calories}")
+    println!("Total calories: {total_calories}");
+    total_calories
 }
 
-fn comprehension_style(input_str: &str) {
+fn comprehension_style(input_str: &str) -> Vec<Elf> {
     let input_list: Vec<&str> = input_str.split("\n\n").collect();
     let elves = input_list
         .iter()
@@ -85,7 +86,7 @@ fn comprehension_style(input_str: &str) {
         })
         .collect::<Vec<Elf>>();
 
-    elf_with_max_calories(elves, 3);
+    elves
 }
 
 fn main() {
@@ -96,5 +97,14 @@ fn main() {
         panic!("Input file should have LF endings.")
     }
     // let input = TEST_STR;
-    comprehension_style(&input)
+    let elves: Vec<Elf> = comprehension_style(&input);
+    elf_with_max_calories(elves, 3);
+}
+
+#[test]
+fn example_str() {
+    let elves = comprehension_style(TEST_STR);
+    assert_eq!(elves[0].total_calories(), 6000);
+
+    assert_eq!(elf_with_max_calories(elves, 3), 45000)
 }
